@@ -1,0 +1,27 @@
+{
+  "name": "EmployeeTracker",
+  "version": "1.0.0",
+  "description": "## Introduction",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/orenamema/EmployeeTracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/orenamema/EmployeeTracker/issues"
+  },
+  "homepage": "https://github.com/orenamema/EmployeeTracker#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^7.0.3",
+    "install": "^0.13.0",
+    "mysql": "^2.17.1",
+    "npm": "^6.13.6"
+  }
+}
