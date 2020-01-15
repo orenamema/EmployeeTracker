@@ -26,6 +26,8 @@ Following are the minimum requirements that the command line application does:
 
 ## Code
 
+## Lesson Learned
+
 ## Author
 
 **Oren Amema**
