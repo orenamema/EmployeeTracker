@@ -40,7 +40,7 @@ connection.connect(function (err) {
           type: "list",
           message: "What would you like to do?",
           name: "choice",
-          choices: ["add departments","add roles", "add employees ",
+          choices: ["add departments","add roles", "add employees",
           "view departments", "view roles", "view employees", "update employees","all done?" ]
   
         }
@@ -67,7 +67,7 @@ connection.connect(function (err) {
         else if (res.choice ==="update employees"){
             updateEmployee();
         }
-        else {
+        else { //we have to close the connection to close the program
             console.log("Thank you! Come again!");
         }
     })
@@ -82,10 +82,14 @@ function addDpt () {
     }
 
     ]).then(function(res){
-        connection.query(`INSERT INTO department (name)
-                          VALUES ("${res.name}");`
-                        , function (error, results, fields) {
+        connection.query(
+            "INSERT INTO department SET ?",
+            {
+              name: res.name,
+            },
+        function (error) {
             if (error) throw error;
+
             console.log('Department added to DB');
         });
         start();
@@ -153,7 +157,7 @@ function addEmployee () {
 
     ]).then(function(res){
         connection.query(
-            "INSERT INTO role SET ?",
+            "INSERT INTO employee SET ?",
             {
               first_name: res.firstname,
               last_name: res.lastname,
@@ -167,3 +171,47 @@ function addEmployee () {
         start();
     })
 }
+
+//View Functions
+
+function viewDepartment (){
+    connection.query( "SELECT * FROM department", function(err,res){
+        console.log(res);
+        if (err) throw err; 
+    });
+}
+
+function viewRole (){
+    connection.query( "SELECT * FROM role", function(err,res){
+        console.log(res);
+        if (err) throw err; 
+    });
+}
+
+function viewEmployee (){
+    connection.query( "SELECT * FROM employee", function(err,res){
+        console.log(res);
+        if (err) throw err; 
+    });
+    start();
+}
+
+//Update Functions
+
+// function updateEmployee(){
+//     var query = connection.query()
+//     [
+//         {
+//           role_id: answer.role
+//         },
+//         {
+//           id: 
+//         }
+//       ],
+//       function(error) {
+//         if (error) throw err;
+//         console.log("Bid placed successfully!");
+//         start();
+//       }
+//     );
+//   }
