@@ -26,7 +26,65 @@ Following are the minimum requirements that the command line application does:
 
 ## Code
 
-## Lesson Learned
+```
+var update_cust_id = 0;
+var update_employees = {};
+var update_roles = {};
+
+function updateEmployeeRole (){
+    connection.query("SELECT * FROM employee", function (err, res) {
+        if (err) throw err;
+        for (var i = 0; i < res.length; i++) {
+            update_employees[`${res[i].first_name} ${res[i].last_name}`] = res[i].id;
+        }
+        inquirer.prompt([
+            {
+                type: "list",
+                name: "employee",
+                message: "Select employee",
+                choices: function () {
+                    var the_choices = []
+                    for (var i = 0; i < res.length; i++) {
+                        the_choices.push(`${res[i].first_name} ${res[i].last_name}`)
+                    }
+                    return the_choices;
+                }
+            }
+        ]).then(function (ans) {
+            update_cust_id = update_employees[ans.employee];
+            connection.query("SELECT * FROM role", function (err, res) {
+                if (err) throw err;
+                for (var i = 0; i < res.length; i++) {
+                    update_roles[res[i].title] = res[i].id;
+                }
+                inquirer.prompt([
+                    {
+                        type: "list",
+                        name: "role",
+                        message: "Select new role",
+                        choices: function () {
+                            var the_choices = []
+                            for (var i = 0; i < res.length; i++) {
+                                the_choices.push(res[i].title)
+                            }
+                            return the_choices;
+                        }
+                    }
+                ]).then(function (ans) {
+                    connection.query(`
+                    UPDATE employee
+                    SET role_id = ${update_roles[ans.role]}
+                    WHERE id = ${update_cust_id};
+                        `, function (err, res) {
+                            if (err) throw err;
+                            console.log(`Role updated!`);
+                            start();
+                    });
+```
+I believe this is an interesting part of my code that highlights how I was able to use different functions to allow the user to update the data.
+
+## Learning Points
+I have learned a lot while building this application especially joining SQL tables.
 
 ## Author
 
