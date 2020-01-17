@@ -259,9 +259,9 @@ function viewData(query){
     });    
 }
 
-update_cust_id = 0;
-update_employees = {};
-update_roles = {};
+var update_cust_id = 0;
+var update_employees = {};
+var update_roles = {};
 
 function updateEmployeeRole (){
     connection.query("SELECT * FROM employee", function (err, res) {
