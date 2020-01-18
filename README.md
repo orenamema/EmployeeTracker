@@ -1,4 +1,5 @@
-# EmployeeTracker - MySQL
+# Employee Tracker - MySQL
+## Employee Management System
 
 ## Introduction
 
