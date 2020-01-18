@@ -17,6 +17,14 @@ I've created a schema database containing three tables:
 
 ## Application
 
+![alt text](https://github.com/orenamema/EmployeeTracker/raw/master/assets/images/tracker.gif)
+
+In order to take notes with this application, the user needs to follow the steps:
+
+* Navigate to EmployeeTracker in the terminal
+* Then the app with the command `node app.js`
+* Then add, view or update the database
+
 ## Requirements
 
 Following are the minimum requirements that the command line application does:
