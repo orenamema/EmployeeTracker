@@ -193,7 +193,7 @@ function viewDepartment (){
                 where d.name = "${ans.department}"
                 `, function (err, res) {
                     if (err) throw err;
-                    console.log(res);
+                    console.table(res);
                     start();
                 });
         });
@@ -225,7 +225,7 @@ function viewRole (){
                 where r.title = "${ans.role}"
                 `, function (err, res) {
                     if (err) throw err;
-                    console.log(res);
+                    console.table(res);
                     start();
                 });
         });
@@ -246,7 +246,7 @@ function viewEmployee (){
             left join employee e2
             on e.manager_id = e2.id`
     connection.query( query, function(err,res){
-        console.log(res);
+        console.table(res);
         if (err) throw err; 
         start();
     });  
@@ -254,7 +254,7 @@ function viewEmployee (){
 
 function viewData(query){
     connection.query( query, function(err,res){
-        console.log(res);
+        console.table(res);
         if (err) throw err; 
     });    
 }
@@ -318,3 +318,5 @@ function updateEmployeeRole (){
     });
 
 }
+
+//console.table allows you to display the output as a table
